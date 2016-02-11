@@ -69,6 +69,7 @@ class MoodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mood_params
-      params.fetch(:mood, {})
+      #params.fetch(:mood, {})
+      params.require(:mood).permit(:feeling)
     end
 end

@@ -1,4 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<p>Feeling for <span><%= @mood.feeling_at.to_s %></span> is <%= @mood.feeling %></p>
+
 <%= link_to 'Edit', edit_mood_path(@mood) %> |
 <%= link_to 'Back', moods_path %>
