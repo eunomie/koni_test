@@ -11,7 +11,8 @@
     </div>
   <% end %>
 
-  <%= f.input :feeling, :as => :select, :collection => Mood.feelings.keys.to_a %>
+  <p>How was your day?</p>
+  <%= f.input :feeling, :as => :radio_buttons, :collection => Mood.feelings.keys.to_a %>
 
   <div class="actions">
     <%= f.submit %>

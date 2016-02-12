@@ -14,4 +14,14 @@ class Mood < ApplicationRecord
       super(params)
     end
   end
+
+  def self.count_by_days
+    hash = {}
+    Mood.all.group_by(&:feeling_at).each do |day, moods|
+      hash[day] = {
+                   'good'=>[], 'ordinary'=>[], 'bad'=>[]
+                  }.merge(moods.group_by { |mood| mood.feeling })
+    end
+    hash
+  end
 end

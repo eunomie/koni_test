@@ -5,6 +5,7 @@ class MoodsController < ApplicationController
   # GET /moods.json
   def index
     @moods = Mood.all
+    @moods_by_day = Mood.count_by_days
   end
 
   # GET /moods/1
