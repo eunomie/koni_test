@@ -6,6 +6,7 @@ class MoodsController < ApplicationController
   def index
     @moods = Mood.all
     @moods_by_day = Mood.group_by_day_and_feeling
+    @moods_values = Mood.value_by_days
   end
 
   # GET /moods/1

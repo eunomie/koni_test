@@ -24,4 +24,15 @@ class Mood < ApplicationRecord
     end
     hash
   end
+
+  def self.value_by_days
+    values = {}
+    group_by_day_and_feeling.each do |day, moods|
+      goods = moods['good'].count
+      bads = moods['bad'].count
+      ordinaries = moods['ordinary'].count
+      values[day] = 10 * (goods - bads) / (goods + bads + ordinaries)
+    end
+    values
+  end
 end

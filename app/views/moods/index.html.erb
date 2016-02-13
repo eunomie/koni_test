@@ -30,6 +30,15 @@
 
 <br/>
 
+<p>Graph</p>
+<div class="values">
+    <% @moods_values.each do |day, value| %>
+	<span class="value" data-mood="<%= value %>" data-date="<%= day %>"></span>
+    <% end %>
+</div>
+
+<br/>
+
 <% @moods_by_day.each do |day, moods| %>
     <h3><%= if day.nil? then "unkown date" else day end %></h3>
     <ul>
