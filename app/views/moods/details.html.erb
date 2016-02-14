@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Moods</h1>
+
+<% @moods_by_day.each do |day, moods| %>
+    <h3><%= if day.nil? then "unkown date" else day end %></h3>
+    <ul>
+      <li>Good: <%= moods['good'].count %></li>
+      <li>Ordinary: <%= moods['ordinary'].count %></li>
+      <li>Bad: <%= moods['bad'].count %></li>
+    </ul>
+<% end %>
+
+<%= link_to 'Back', moods_path %>

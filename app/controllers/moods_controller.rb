@@ -4,9 +4,12 @@ class MoodsController < ApplicationController
   # GET /moods
   # GET /moods.json
   def index
-    @moods = Mood.all
-    @moods_by_day = Mood.group_by_day_and_feeling
-    @moods_values = Mood.value_by_days
+    @mood = Mood.new
+    @moods_values = Mood.value_by_days_until_yesterday
+  end
+
+  def details
+    @moods_by_day = Mood.group_by_day_and_feeling_until_yesterday
   end
 
   # GET /moods/1
@@ -30,7 +33,7 @@ class MoodsController < ApplicationController
 
     respond_to do |format|
       if @mood.save
-        format.html { redirect_to @mood, notice: 'Mood was successfully created.' }
+        format.html { redirect_to :index, notice: 'Mood was successfully created.' }
         format.json { render :show, status: :created, location: @mood }
       else
         format.html { render :new }

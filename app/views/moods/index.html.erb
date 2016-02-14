@@ -2,48 +2,14 @@
 
 <h1>Moods</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Day</th>
-      <th>Feeling</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= render 'form', mood: @mood %>
 
-  <tbody>
-    <% @moods.each do |mood| %>
-      <tr>
-        <td><%= mood.feeling_at %></td>
-        <td><%= mood.feeling %></td>
-        <td><%= link_to 'Show', mood %></td>
-        <td><%= link_to 'Edit', edit_mood_path(mood) %></td>
-        <td><%= link_to 'Destroy', mood, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<h2>Graph</h2>
 
-<br>
-
-<%= link_to 'New Mood', new_mood_path %>
-
-<br/>
-
-<p>Graph</p>
 <div class="values">
     <% @moods_values.each do |day, value| %>
 	<span class="value" data-mood="<%= value %>" data-date="<%= day %>"></span>
     <% end %>
 </div>
 
-<br/>
-
-<% @moods_by_day.each do |day, moods| %>
-    <h3><%= if day.nil? then "unkown date" else day end %></h3>
-    <ul>
-	<li>Good: <%= moods['good'].count %></li>
-	<li>Ordinary: <%= moods['ordinary'].count %></li>
-	<li>Bad: <%= moods['bad'].count %></li>
-    </ul>
-<% end %>
+<%= link_to 'Details', :controller => :moods, :action => :details %>

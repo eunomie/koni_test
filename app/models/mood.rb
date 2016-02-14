@@ -15,9 +15,9 @@ class Mood < ApplicationRecord
     end
   end
 
-  def self.group_by_day_and_feeling
+  def self.group_by_day_and_feeling_until_yesterday
     hash = {}
-    Mood.all.group_by(&:feeling_at).each do |day, moods|
+    Mood.where("feeling_at < ?", Date.today).group_by(&:feeling_at).each do |day, moods|
       hash[day] = {
                    'good'=>[], 'ordinary'=>[], 'bad'=>[]
                   }.merge(moods.group_by { |mood| mood.feeling })
@@ -25,9 +25,9 @@ class Mood < ApplicationRecord
     hash
   end
 
-  def self.value_by_days
+  def self.value_by_days_until_yesterday
     values = {}
-    group_by_day_and_feeling.each do |day, moods|
+    group_by_day_and_feeling_until_yesterday.each do |day, moods|
       goods = moods['good'].count
       bads = moods['bad'].count
       ordinaries = moods['ordinary'].count
