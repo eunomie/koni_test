@@ -1,4 +1,4 @@
-<%= simple_form_for(mood) do |f| %>
+<%= simple_form_for(mood, html: { class: 'form-horizontal' }) do |f| %>
   <% if mood.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(mood.errors.count, "error") %> prohibited this mood from being saved:</h2>
@@ -12,9 +12,13 @@
   <% end %>
 
   <p>How was your day?</p>
-  <%= f.input :feeling, :as => :radio_buttons, :collection => Mood.feelings.keys.to_a %>
+  <%= f.input :feeling,
+  :as => :radio_buttons,
+  :collection => Mood.feelings.keys.to_a,
+  item_wrapper_class: 'radio-inline',
+  wrapper_html: {class: 'radio'} %>
 
-  <div class="actions">
+  <div class="form-group">
     <%= f.submit %>
   </div>
 <% end %>
