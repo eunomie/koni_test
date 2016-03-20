@@ -22,7 +22,7 @@ class MoodsController < ApplicationController
 
     respond_to do |format|
       if @mood.save
-        format.html { redirect_to :back, notice: 'Mood was successfully created.' }
+        format.html { redirect_back fallback_location: root_path, notice: 'Mood was successfully created.' }
       else
         format.html { render :new }
       end
